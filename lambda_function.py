@@ -228,11 +228,15 @@ def lambda_handler(event, context):
             strings[key] = strings_en[key]
     global video_or_audio
     video_or_audio = [False, 'audio']
-    if 'VideoApp' in event['context']['System']['device']['supportedInterfaces']:
+    logger.info('====>'+str(event['context']['System']['device']['supportedInterfaces'].keys()))
+    if 'VideoApp' in event['context']['System']['device']['supportedInterfaces'].keys():
         video_or_audio[0] = True
+        #logger.info('====>event[request][type]'+str(event['request']['type']))
+        #logger.info('====>event[request][intent][name]'+str(event['request']['intent']['name']))
         if event['request']['type'] == "IntentRequest":
-            if event['request']['intent']['name'] == 'PlayOneIntent':
+            if event['request']['intent']['name'] in ['PlayOneIntent','SearchIntent']:
                 video_or_audio[1] = 'video'
+        logger.info("video_or_audio: " + str(video_or_audio))
     if event['request']['type'] == "LaunchRequest":
         return get_welcome_response(event)
     elif event['request']['type'] == "IntentRequest":
@@ -915,6 +919,8 @@ def search(event):
         else:
             videos, errorMessage = video_search(query)
             playlist_channel_video = strings['video']
+            logger.info('video_search: ' + query)
+            logger.info('video_search videos: ' + str(videos))
         if videos is False:
             return build_response(build_cardless_speechlet_response(errorMessage, None, True))
     if videos == []:
@@ -942,7 +948,7 @@ def search(event):
 
 def stop():
     should_end_session = True
-    speech_output = strings['pausing']
+    speech_output = strings['ok']
     return build_response(build_stop_speechlet_response(speech_output, should_end_session))
 
 
@@ -1110,9 +1116,9 @@ def resume(event, offsetInMilliseconds=None):
 
 
 def change_mode(event, mode, value):
-    if 'token' not in event['context']['AudioPlayer']:
-        speech_output = strings['nothingplaying']
-        return build_response(build_short_speechlet_response(speech_output, True))
+    #if 'token' not in event['context']['AudioPlayer']:
+    #    speech_output = strings['nothingplaying']
+    #    return build_response(build_short_speechlet_response(speech_output, True))
     current_token = event['context']['AudioPlayer']['token']
     should_end_session = True
     playlist = convert_token_to_dict(current_token)

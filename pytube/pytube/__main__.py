@@ -117,6 +117,19 @@ class YouTube(object):
                 self.watch_html,
             )['args']
 
+            # Fix for KeyError: 'title' issue #434
+            if 'title' not in self.player_config_args:
+                i_start = (
+                    self.watch_html
+                    .lower()
+                    .index('<title>') + len('<title>')
+                )
+                i_end = self.watch_html.lower().index('</title>')
+                title = self.watch_html[i_start:i_end].strip()
+                index = title.lower().rfind(' - youtube')
+                title = title[:index] if index > 0 else title
+                self.player_config_args['title'] = title
+
         self.vid_descr = extract.get_vid_descr(self.watch_html)
         # https://github.com/nficano/pytube/issues/165
         stream_maps = ['url_encoded_fmt_stream_map']
@@ -242,14 +255,7 @@ class YouTube(object):
         :rtype: str
 
         """
-        return (
-            self.player_config_args
-            .get('player_response', {})
-            .get('videoDetails', {})
-            .get('thumbnail', {})
-            .get('thumbnails', [])[0]
-            .get('url')
-        )
+        return self.player_config_args['thumbnail_url']
 
     @property
     def title(self):
@@ -258,12 +264,7 @@ class YouTube(object):
         :rtype: str
 
         """
-        return (
-            self.player_config_args
-            .get('player_response', {})
-            .get('videoDetails', {})
-            .get('title')
-        )
+        return self.player_config_args['title']
 
     @property
     def description(self):
@@ -295,12 +296,7 @@ class YouTube(object):
         :rtype: str
 
         """
-        return (
-            self.player_config_args
-            .get('player_response', {})
-            .get('videoDetails', {})
-            .get('lengthSeconds')
-        )
+        return self.player_config_args['length_seconds']
 
     @property
     def views(self):
