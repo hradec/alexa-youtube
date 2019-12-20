@@ -6,7 +6,8 @@ __Last update: 20 Dec 2019__
 ## Skill is now full
 * This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill. Email me at ndg63276@gmail.com to receive your ARN.
+* So I am (@ndg63276 it is) now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill. Email me at ndg63276@gmail.com to receive your ARN.
+* **an option for using @ndg63276 AWS lambdas (and increasing his costs), is to deploy it yourself, since anyone can have AWS lambdas, with 800000 seconds of CPU time per month for free. Check out the "Deploy yourself section down below". Also, if you want to modify the code and help @ndg63276 with the development, you'll need to deploy your own lambda!**
 
 ## Features
 * Play audio from YouTube videos
