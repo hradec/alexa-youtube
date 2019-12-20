@@ -100,6 +100,7 @@ def apply_descrambler(stream_data, key):
     #    'applying descrambler\n%s',
     #    pprint.pformat(stream_data[key], indent=2),
     #)
+    from urllib.parse import unquote_plus
     try:
         stream_data[key] = [
             {k: unquote(v) for k, v in parse_qsl(i)}
@@ -112,6 +113,11 @@ def apply_descrambler(stream_data, key):
         for each in stream_data[key]:
              if 'mimeType' in each.keys():
                   each['type'] = each['mimeType']
+                  if 'cipher' in each:
+                        cipher = each['cipher'].split('&')
+                        for k in ['url','sp','s']:
+                             for n in [x for x in cipher if k+'=' in x ]:
+                                 each[k] = unquote_plus(unquote_plus(n.replace(k+'=','')))
     print(stream_data[key][0])
     logger.debug(
         'applying descrambler\n%s',

@@ -4,6 +4,10 @@ from os import environ
 import os, sys
 sys.path.insert(0,os.path.dirname(__file__))
 sys.path.insert(0,'%s/pytube' % os.path.dirname(__file__))
+sys.path.insert(0,'%s/modules' % os.path.dirname(__file__))
+#sys.path.insert(0, '%s/youtube_search/' % os.path.dirname(__file__) )
+#sys.path.insert(0, '%s/beautifulsoup4/build/lib/' % os.path.dirname(__file__) )
+from youtube_search import YoutubeSearch
 try:
     from urllib.error import HTTPError  # python3
 except:
@@ -553,7 +557,7 @@ def do_nothing():
     return build_response({})
 
 
-def youtube_search(query, search_type, maxResults, relatedToVideoId=None, channel_id=None, order=None, pageToken=None):
+def __youtube_search(query, search_type, maxResults, relatedToVideoId=None, channel_id=None, order=None, pageToken=None):
     if 'DEVELOPER_KEY' not in environ:
         return {'error': {'code': 400}}
     params = {}
@@ -568,6 +572,17 @@ def youtube_search(query, search_type, maxResults, relatedToVideoId=None, channe
         youtube_search_url = environ['youtube_search_url']
     r = requests.get(youtube_search_url, params=params)
     return r.json()
+
+def youtube_search(query, search_type, maxResults, relatedToVideoId=None, channel_id=None, order=None, pageToken=None):
+	r = eval(YoutubeSearch(query).to_json())
+	rr = {}
+	rr['items'] = r['videos']
+	for n in rr['items']:
+	    id=n['id']
+	    n['id'] = {}
+	    n['id']['videoId'] = id
+	logger.info('youtube_search:'+ str(rr))
+	return rr
 
 
 def youtube_playlist_search(channel_id, pageToken=None):
@@ -755,6 +770,7 @@ def get_url_and_title_youtube_dl(id, retry=True):
             with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
                 yt_url = 'http://www.youtube.com/watch?v='+id
                 info = ydl.extract_info(yt_url, download=False)
+                print( info )
         except Exception as e:
             if 'unavailable' in e.__str__() or 'not available' in e.__str__():
                 logger.info(id+' is unavailable')
