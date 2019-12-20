@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from os import environ
+import os, sys
+sys.path.insert(0,os.path.dirname(__file__))
 try:
     from urllib.error import HTTPError  # python3
 except:
