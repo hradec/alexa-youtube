@@ -77,7 +77,9 @@ That's it!
 
 
 ## Deploying yourself (optional)
-If you want to run this for free or help developing it, you can deploy it on your own Lambda. You just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
+If you want to run this for free or help developing it, you can deploy it on your own Lambda. You just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)). 
+
+If you pretend to use @hradec fork, you don't need the Youtube/Google developer key for simple video searchs anymore, only for specific searchs like playlists, channel, etc.
 
 I've added a copy of the handy guide from [tal9000v2](https://github.com/tal9000v2) located [here](https://github.com/hradec/alexa-youtube/wiki/How-to-deploy-as-a-lambda-at-AWS)!
 
