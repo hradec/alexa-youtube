@@ -74,6 +74,18 @@ The list can be viewed in the Alexa app, click Lists from the main menu.
 
 That's it!
 
+
+## Deploying yourself (optional)
+If you want to run this for free, you can deploy it on your own Lambda. You just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
+
+I've added a copy of the handy guide from [tal9000v2](https://github.com/tal9000v2) located [here](https://github.com/hradec/alexa-youtube/wiki/How-to-deploy-as-a-lambda-at-AWS)!
+
+There's also a guide on how to debug the output of your lambda function, [here](https://github.com/hradec/alexa-youtube/wiki/If-you-skill-doesn't-work---how-to-debug!!)! 
+
+# Public Playlists
+If you have (public) playlists that you would like to play, first get your channel ID from youtube. Find a video you have uploaded, then click on your name beneath it, it should take you to eg https://www.youtube.com/channel/UCDVYQ4Zhbm3S2dlz7P1GBDg, in which case your channel ID is UCDVYQ4Zhbm3S2dlz7P1GBDg. Then, when you add the environment variable DEVELOPER_KEY, add another environment variable called MY_CHANNEL_ID, with the value of that your channel ID. Then you can say, "Alexa, ask YouTube to play my playlist {name of your playlist}".
+
+
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
 Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, launch YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
