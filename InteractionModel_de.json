@@ -33,10 +33,29 @@
                     ],
                     "samples": [
                         "spiel Musik von {query}",
+                        "spiele Musik von {query}",
                         "spiel Lieder von {query}",
+                        "spiele Lieder von {query}",
                         "spiel Videos von {query}",
+                        "spiele Videos von {query}",
                         "suche nach {query}",
-                        "spiel {query}"
+                        "spiel {query}",
+                        "spiele {query}"
+                    ]
+                },
+                {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Spiel das Lied {query}",
+                        "Spiel das Video {query}",
+                        "Spiele das Lied {query}",
+                        "Spiele das Video {query}"
                     ]
                 },
                 {
@@ -63,9 +82,10 @@
                         }
                     ],
                     "samples": [
-                        "start Playlist {query}",
+                        "starte Playlist {query}",
                         "hör Playlist {query} an",
-                        "spiel Playlist {query} ab"
+                        "spiel Playlist {query} ab",
+                        "spiele Playlist {query} ab"
                     ]
                 },
                 {
@@ -89,9 +109,10 @@
                         }
                     ],
                     "samples": [
-                        "Start meine Playlist {query}",
+                        "Starte meine Playlist {query}",
                         "Hör meine Playlist {query}",
-                        "Spiel meine Playlist {query}"
+                        "Spiel meine Playlist {query}",
+                        "Spiele meine Playlist {query}"
                     ]
                 },
         {
@@ -114,6 +135,14 @@
                     ]
                 },
                 {
+                    "name": "PlayMyLatestVideoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Spiel mein neuestes Video",
+                        "Spiele mein neuestes Video"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
@@ -123,8 +152,9 @@
                     ],
                     "samples": [
                         "hör Kanal {query} an",
-                        "start Kanal {query} ",
-                        "spiel Kanal {query} ab"
+                        "starte Kanal {query} ",
+                        "spiel Kanal {query} ab",
+                        "spiele Kanal {query} ab"
                     ]
                 },
                 {
@@ -144,13 +174,41 @@
                     "slots": [],
                     "samples": [
                         "Wer ist das",
-                        "Welches Video spielt",
-                        "Welche Musik spielt",
+                        "Welches Video wird gespielt",
+                        "Welche Musik wird gespielt",
                         "Was ist das",
                         "Was spielt"
                     ]
                 },
-        {
+                {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Spiel mehr wie das",
+                        "Spiel videos wie das",
+                        "Spiel ähnliche videos",
+                        "Spiele mehr wie das",
+                        "Spiele videos wie das",
+                        "Spiele ähnliche videos"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Automatisches abspielen einschalten"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Automatisches abspielen ausschalten",
+                        "Spiel dieses eine Video",
+                        "Spiele dieses eine Video"
+                    ]
+                },
+                {
                     "name": "SayTimestampIntent",
                     "slots": [],
                     "samples": [
@@ -158,7 +216,7 @@
                         "Was ist die aktuelle Position",
                         "Aktuelle Zeit",
                         "Aktuelle Position",
-            "Zeitstempel"
+                        "Zeitstempel"
                     ]
                 },
                 {

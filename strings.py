@@ -1,5 +1,18 @@
 # -*- coding: utf-8 -*-
 
+# To run as an Alexa hosted skill:
+# 1. Uncomment lines 9-14 below
+# 2. Insert your Google developer key in line 10
+# 3. Make sure to add this strings.py file to the lambda folder
+# 4. Make sure to add pytube to the requirements.txt file in the lambda folder
+
+#environ = {
+#    "DEVELOPER_KEY": "insert_your_key_here",
+#    "youtube_dl": "false",
+#    "youtube_dl_error_mirror": "",
+#    "AWS_LAMBDA_FUNCTION_NAME": ""
+#}
+
 locales = {
     'en-GB': 'Europe/London',
     'en-US': 'America/New York',
@@ -12,7 +25,8 @@ locales = {
     'it-IT': 'Europe/Rome',
     'es-ES': 'Europe/Madrid',
     'es-MX': 'America/Mexico City',
-    'ja-JP': 'Asia/Tokyo'
+    'ja-JP': 'Asia/Tokyo',
+    'pt-BR': 'Brasil/Sao Paulo'
 }
 
 strings_en = {
@@ -44,6 +58,13 @@ strings_en = {
 'minute':"minute",
 'seconds':"seconds",
 'second':"second",
+'throttled':"This skill is being throttled by YouTube, please try again later.",
+'error403':"Sorry, this skill has hit it's usage limit for today.",
+'apikeyerror':"Sorry, there was a problem with the Youtube API key.",
+'youtubeerror':"There was a problem with the youtube search response.",
+'nochannelid':"You do not have a channel id set.",
+'noplaylistresults':"There were no playlist results found.",
+'nomoreplaylists':"There are no more playlist results.",
 }
 strings_fr = {
 'welcome1':"Bienvenue sur Youtube. Dite, par exemple, jouer une vidéo de Madonna.",
@@ -66,7 +87,14 @@ strings_fr = {
 'nothingplaying':"Il n'y a aucune lecture en cours.",
 'sorryskipby':"Désolé, je n'ai pas compris de combien je devais avancer ou reculer.",
 'sorryskipto':"Désolé, je n'ai pas compris de combien je devais avancer ou reculer.",
-'ok':"OK"
+'ok':"OK",
+'currentposition':"La position actuelle est",
+'hours':"heures",
+'hour':"heure",
+'minutes':"minutes",
+'minute':"minute",
+'seconds':"secondes",
+'second':"seconde",
 }
 strings_it = {
 'welcome1':"Benvenuto su YouTube. Dì, per esempio, riproduci video dei Beatles.",
@@ -89,7 +117,14 @@ strings_it = {
 'nothingplaying':"Al momento non sto riproducendo nulla.",
 'sorryskipby':"Spiacente, non ho capito di quanto saltare",
 'sorryskipto':"Spiacente, non ho capito dove saltare",
-'ok':"OK"
+'ok':"OK",
+'currentposition':"La posizione attuale è",
+'hours':"ore",
+'hour':"ora",
+'minutes':"minuti",
+'minute':"minuto",
+'seconds':"secondi",
+'second':"secondo",
 }
 strings_de = {
 'welcome1':"Herzlich willkommen bei Youtube. Was kann ich für Dich tun? Sage zum Beispiel 'spiel Videos von The Beatles'.",
@@ -122,7 +157,7 @@ strings_de = {
 'second':"Sekunde",
 }
 strings_es = {
-'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon musica de Mozart.",
+'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon canciones de Mozart.",
 'welcome2':"O puedes decir, canciones en aleatorio de Vivaldi.",
 'help':"Por ejemplo di, pon un vídeo de Relajación. O pon una lista aleatoria de sonidos de lluvia.",
 'illegal':"No puedes hacer eso con esta skill.",
@@ -180,4 +215,34 @@ strings_ja = {
 'minute':"分",
 'seconds':"秒",
 'second':"秒",
+}
+strings_pt = {
+'welcome1':"Bem vindo ao Youtube. Diga, por exemplo, toque um vídeo dos Beatles.",
+'welcome2':"Ou você pode dizer, toque músicas de Michael Jackson.",
+'help':"Por exemplo, diga, toque vídeos de Fall Out Boy",
+'illegal':"Você não pode fazer isso com essa skill.",
+'gonewrong':"Desculpe, algo deu errado",
+'playlist':"A playlist",
+'channel':"O canal",
+'video':"O vídeo",
+'notworked':"não funcionou, devo tentar o próximo?",
+'playing':"Tocando",
+'pausing':"Pausando",
+'nomoreitems':"Existem mais itens na playlist.",
+'resuming':"Retomando",
+'noresume':"Não consegui voltar a tocar.",
+'novideo':"Não consegui tocar o vídeo.",
+'notitle':"Não encontrei o nome do vídeo atual.",
+'nowplaying':"Tocando agora",
+'nothingplaying':"Nada está tocando atualmente.",
+'sorryskipby':"Desculpe, não ouvi quanto tenho que pular",
+'sorryskipto':"Desculpe, não entendi para onde tenho que pular",
+'ok':"OK",
+'currentposition':"A posição atual é",
+'hours':"horas",
+'hour':"hora",
+'minutes':"minutos",
+'minute':"minuto",
+'seconds':"segundos",
+'second':"segundo",
 }
