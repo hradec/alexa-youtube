@@ -91,10 +91,28 @@ def apply_descrambler(stream_data, key):
     {'foo': [{'bar': '1', 'var': 'test'}, {'em': '5', 't': 'url encoded'}]}
 
     """
-    stream_data[key] = [
-        {k: unquote(v) for k, v in parse_qsl(i)}
-        for i in stream_data[key].split(',')
-    ]
+    #print(stream_data.keys(),key)
+    #stream_data[key] = [
+    #    {k: unquote(v) for k, v in parse_qsl(i)}
+    #    for i in stream_data[key].split(',')
+    #]
+    #logger.debug(
+    #    'applying descrambler\n%s',
+    #    pprint.pformat(stream_data[key], indent=2),
+    #)
+    try:
+        stream_data[key] = [
+            {k: unquote(v) for k, v in parse_qsl(i)}
+            for i in stream_data[key].split(',')
+        ]
+    except KeyError:
+        stream_data[key] = json.loads(stream_data['player_response'])['streamingData']['adaptiveFormats']
+        if type(stream_data[key]) == type({}):
+             stream_data[key] = [stream_data[key]]
+        for each in stream_data[key]:
+             if 'mimeType' in each.keys():
+                  each['type'] = each['mimeType']
+    print(stream_data[key][0])
     logger.debug(
         'applying descrambler\n%s',
         pprint.pformat(stream_data[key], indent=2),
