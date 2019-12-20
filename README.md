@@ -1,12 +1,13 @@
 # alexa-youtube
 ## Unofficial YouTube skill for Alexa
-__Last update: 15 Dec 2019__
+__Last update: 20 Dec 2019__
 
 
 ## Skill is now full
 * This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill. Email me at ndg63276@gmail.com to receive your ARN.
+* So I am (@ndg63276 it is) now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill. Email me at ndg63276@gmail.com to receive your ARN.
+* **an option for using @ndg63276 AWS lambdas (and increasing his costs), is to deploy it yourself, since anyone can have AWS lambdas, with 800000 seconds of CPU time per month for free. Check out the "Deploy yourself section down below". Also, if you want to modify the code and help @ndg63276 with the development, you'll need to deploy your own lambda!**
 
 ## Features
 * Play audio from YouTube videos
@@ -76,11 +77,11 @@ That's it!
 
 
 ## Deploying yourself (optional)
-If you want to run this for free, you can deploy it on your own Lambda. You just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
+If you want to run this for free or help developing it, you can deploy it on your own Lambda. You just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
 
 I've added a copy of the handy guide from [tal9000v2](https://github.com/tal9000v2) located [here](https://github.com/hradec/alexa-youtube/wiki/How-to-deploy-as-a-lambda-at-AWS)!
 
-There's also a guide on how to debug the output of your lambda function, [here](https://github.com/hradec/alexa-youtube/wiki/If-you-skill-doesn't-work---how-to-debug!!)! 
+There's also a guide on how to debug the output of your lambda function, [here](https://github.com/hradec/alexa-youtube/wiki/If-alexa-skill-complains-it-didn't-receive-a-proper-response,-how-to-debug-it%3F)! 
 
 # Public Playlists
 If you have (public) playlists that you would like to play, first get your channel ID from youtube. Find a video you have uploaded, then click on your name beneath it, it should take you to eg https://www.youtube.com/channel/UCDVYQ4Zhbm3S2dlz7P1GBDg, in which case your channel ID is UCDVYQ4Zhbm3S2dlz7P1GBDg. Then, when you add the environment variable DEVELOPER_KEY, add another environment variable called MY_CHANNEL_ID, with the value of that your channel ID. Then you can say, "Alexa, ask YouTube to play my playlist {name of your playlist}".
