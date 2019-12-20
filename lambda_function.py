@@ -3,6 +3,7 @@ from __future__ import print_function
 from os import environ
 import os, sys
 sys.path.insert(0,os.path.dirname(__file__))
+sys.path.insert(0,'%s/pytube' % os.path.dirname(__file__))
 try:
     from urllib.error import HTTPError  # python3
 except:
@@ -806,12 +807,20 @@ def get_url_and_title_pytube(id, retry=True):
     except:
         logger.info('Unable to get URL for '+id)
         return None, None
+    extramsg=''
     if video_or_audio[1] == 'video':
+        # we ask for progressive, which means audio and video are in the same container
         first_stream = yt.streams.filter(progressive=True).first()
-    else:
+        # this below can play video, but no audio!
+        #if not first_stream:
+        #    first_stream = yt.streams.filter(only_audio=False, subtype='mp4').first()
+    if video_or_audio[1] != 'video' or not first_stream:
+        if video_or_audio[1] == 'video':
+            extramsg='NO PROGRESSIVE VIDEO FOUND - '
+        video_or_audio[1] = 'audio'
         first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
     logger.info(first_stream.url)
-    return first_stream.url, first_stream.player_config_args['player_response']['videoDetails']['title']
+    return first_stream.url,extramsg+first_stream.player_config_args['player_response']['videoDetails']['title']
 
 
 def get_url_and_title_pytube_server(id):
@@ -1306,3 +1315,4 @@ def skill_expired():
     speech_output += 'If you would like to continue using this skill, please go to patreon.com/alexayoutube to renew your subscription. '
     speech_output += '</prosody></voice></speak> '
     return build_response(build_cardless_speechlet_response(speech_output, '', True, 'SSML'))
+
